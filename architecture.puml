@@ -1,0 +1,26 @@
+@startuml
+
+actor "User" as user
+
+node "PHP Login Management" {
+    node "Model" as model
+    node "Domain" as domain
+    node "Controller" as controller
+    node "View" as view
+    node "Service" as service
+    node "Repository" as repository
+}
+
+database "MySQL"  as mysql
+
+user --> controller     :1 User memanggil controller
+controller --> model    :2 Controller mengambil data model
+controller -->service   :3 //Controller mengirim data ke service
+service --> repository  :4 //Service mengirim data ke repository
+repository --> domain   :5 //Repository menggunakan domain
+repository --> mysql    :6 //Domain mengirim data ke MySQL
+controller -->view      :7 //Kembali ke controller menampilkan view
+controller -->user      :8 //Controller mengembalikan ke user
+
+
+@enduml
